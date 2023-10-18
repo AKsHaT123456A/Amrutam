@@ -1,0 +1,38 @@
+{
+  "dependencies": {
+    "@react-navigation/native": "^6.1.8",
+    "@types/bcrypt": "^5.0.0",
+    "@types/compression": "^1.7.3",
+    "@types/dotenv": "^8.2.0",
+    "@types/express-session": "^1.17.8",
+    "@types/passport-local": "^1.0.36",
+    "bcrypt": "^5.1.1",
+    "body-parser": "^1.20.2",
+    "compression": "^1.7.4",
+    "dotenv": "^16.3.1",
+    "express-session": "^1.17.3",
+    "mongoose": "^7.6.2",
+    "passport": "^0.6.0",
+    "passport-local": "^1.0.0"
+  },
+  "name": "medscheduler01",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon --exec ts-node ./index.ts",
+    "build": "tsc",
+    "serve": "node dist/index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@types/express": "^4.17.19",
+    "@types/node": "^20.8.6",
+    "@types/passport": "^1.0.13",
+    "express": "^4.18.2",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.2.2"
+  }
+}
