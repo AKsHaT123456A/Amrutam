@@ -1,4 +1,4 @@
-import { CareTaker, ICareTaker } from "../models/Caretaker.models";
+import { CareTaker, ICareTaker } from "../models/careTaker.models";
 import { Patient, IPatient } from "../models/Patient.models";
 
 export const roleModel = (role: string) => {
