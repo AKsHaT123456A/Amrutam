@@ -41,16 +41,16 @@ export const register = async (req: Request, res: Response) => {
 
 export const login = async (req: Request, res: Response) => {
   try {
-    const { email, password, role } = req.body;
+    const { phone, password, role } = req.body;
 
-    if (!email || !password) {
+    if (!phone || !password) {
       return res
         .status(400)
         .json({ message: "Email and password are required" });
     }
     const userModel = roleModel(role);
 
-    const user = await (userModel as typeof Patient).findOne({ email });
+    const user = await (userModel as typeof Patient).findOne({ phone });
 
     if (!user) {
       return res.status(401).json({ message: "Invalid email or password" });
