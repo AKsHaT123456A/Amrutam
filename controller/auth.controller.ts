@@ -33,8 +33,9 @@ export const register = async (req: Request, res: Response) => {
     });
 
     return res.status(201).json({ message: "Registration successful", token });
-  } catch (error) {
-    res.status(500).json({ message: "Registration failed" });
+  } catch (err: any ) {
+    console.log(err.message);
+    res.status(500).json({ message: "Registration failed", err: err });
   }
 };
 
