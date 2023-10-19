@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 import express from "express";
-import { DbCon, PORT } from "../utils/constants"; // Update the import for PORT
+import { DbCon, PORT } from "../utils/constants"; 
 
 let isConnected: boolean = false;
 

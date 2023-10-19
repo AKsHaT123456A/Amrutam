@@ -1,12 +1,14 @@
 import mongoose, { Schema, Document, Types } from "mongoose";
+import bcrypt from "bcrypt";
 
 export interface IPatient extends Document {
   email: string;
   password: string;
   firstName: string;
+  phone: string;
   lastName: string;
   role: string;
-  caretaker: Types.ObjectId[]; 
+  caretaker: Types.ObjectId[];
 }
 
 const patientSchema: Schema = new Schema({
