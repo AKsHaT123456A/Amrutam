@@ -4,7 +4,7 @@ import { CareTaker } from "../models/careTaker.models";
 
 const addCareTaker = async (req: Request, res: Response) => {
   try {
-    const { id } = req.body; // Use req.body to get the ID
+    const { id } = req.params; // Use req.body to get the ID
 
     const patient = await Patient.findById(id);
 
