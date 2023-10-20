@@ -28,12 +28,13 @@ export const register = async (req: Request, res: Response) => {
     });
 
     await newUser.save();
+    const id = newUser._id;
     const token = jwt.sign({ id: newUser._id }, JWT_SECRET, {
       expiresIn: TOKEN_EXPIRATION,
     });
 
-    return res.status(201).json({ message: "Registration successful", token });
-  } catch (err: any ) {
+    return res.status(201).json({ message: "Registration successful", token , id});
+  } catch (err: any) {
     console.log(err.message);
     res.status(500).json({ message: "Registration failed", err: err });
   }
@@ -55,7 +56,7 @@ export const login = async (req: Request, res: Response) => {
     if (!user) {
       return res.status(401).json({ message: "Invalid email or password" });
     }
-
+    const id = user._id;
     const isPasswordValid = await bcrypt.compare(password, user.password);
 
     if (!isPasswordValid) {
@@ -66,7 +67,7 @@ export const login = async (req: Request, res: Response) => {
       expiresIn: TOKEN_EXPIRATION,
     });
 
-    return res.status(200).json({ message: "Login successful", token });
+    return res.status(200).json({ message: "Login successful", token, id });
   } catch (error) {
     res.status(500).json({ message: "Login failed" });
   }

@@ -4,6 +4,7 @@ import compression from "compression";
 import cors from "cors";
 import { connect } from "./connection/db";
 import authRoutes from "./route/auth.routes";
+import careTakerRoute from "./route/careTaker.routes";
 const app = express();
 
 app.use(express.json());
@@ -14,6 +15,7 @@ app.get("/", (req: Request, res: Response) => {
   res.send("Hello,Patient");
 });
 
-app.use("/api/v1", authRoutes);
+app.use("/api/v1/auth/patient", authRoutes);
+app.use("/api/v1/auth/caretaker", careTakerRoute);
 
 connect(app);

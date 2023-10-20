@@ -34,10 +34,6 @@ const careTakerSchema: Schema = new Schema({
     type: String,
     required: true,
   },
-  password:{
-    type: String,
-    required: true,
-  }
 });
 
 export const CareTaker = mongoose.model<ICareTaker>(
