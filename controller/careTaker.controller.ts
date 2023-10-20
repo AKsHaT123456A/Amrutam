@@ -19,7 +19,7 @@ const addCareTaker = async (req: Request, res: Response) => {
     });
 
     const careTakerIn = await Patient.findById(id).populate({
-      path: "careTakers",
+      path: "caretaker",
       select: "firstName lastName priority schedule email phone -_id",
     });
 
