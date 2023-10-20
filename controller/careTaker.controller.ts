@@ -39,7 +39,7 @@ const getCareTaker = async (req: Request, res: Response) => {
       return res.status(404).json({ error: "Patient not found" });
     }
 
-    return res.status(200).json(careTaker.caretaker);
+    return res.status(200).json({ message: careTaker.caretaker });
   } catch (error) {
     console.error("Error in getCareTaker:", error);
     return res.status(500).json({ error: "Internal server error" });
