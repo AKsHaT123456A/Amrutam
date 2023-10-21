@@ -4,8 +4,7 @@ import { CareTaker } from "../models/careTaker.models";
 
 const addCareTaker = async (req: Request, res: Response) => {
   try {
-    const { id } = req.params; // Use req.body to get the ID
-
+    const { id } = req.params; 
     const patient = await Patient.findById(id);
 
     if (!patient) {
@@ -13,15 +12,18 @@ const addCareTaker = async (req: Request, res: Response) => {
     }
 
     const careTaker = await CareTaker.create(req.body);
+console.log(careTaker);
 
-    await Patient.findByIdAndUpdate(id, {
-      $addToSet: { careTakers: careTaker._id }, // Correct field name to 'careTakers'
+    const p =await Patient.findByIdAndUpdate(id, {
+      $addToSet: { caretaker: careTaker._id },
     });
+console.log(p);
 
     const careTakerIn = await Patient.findById(id).populate({
       path: "caretaker",
       select: "firstName lastName priority schedule email phone -_id",
     });
+console.log(careTakerIn);
 
     return res.status(201).json(careTakerIn);
   } catch (error) {
