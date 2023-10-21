@@ -8,6 +8,7 @@ export interface IPatient extends Document {
   phone: string;
   lastName: string;
   role: string;
+  deviceToken: string;
   caretaker: Types.ObjectId[];
 }
 
@@ -44,6 +45,16 @@ const patientSchema: Schema = new Schema({
       ref: "CareTaker",
     },
   ],
+  schedule:[
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Schedule",
+    },
+  ],
+  deviceToken:{
+    type: String,
+    required: true,
+  },
 });
 
 export const Patient = mongoose.model<IPatient>("Patient", patientSchema);

@@ -4,6 +4,7 @@ export interface ICareTaker extends Document {
   firstName: string;
   lastName: string;
   priority: string;
+  phone: string;
   schedule: string;
 }
 

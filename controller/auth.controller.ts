@@ -1,15 +1,23 @@
 import { NextFunction, Request, Response } from "express";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
-import { roleModel } from "../utils/role";
-import { JWT_SECRET, TOKEN_EXPIRATION } from "../utils/constants";
+import { roleModel } from "../utils/role.utils";
+import { JWT_SECRET, TOKEN_EXPIRATION } from "../utils/constants.utils";
 import { Patient } from "../models/Patient.models";
 
 export const register = async (req: Request, res: Response) => {
   try {
-    const { email, password, firstName, lastName, role } = req.body;
+    const { email, password, firstName, lastName, role, deviceToken } =
+      req.body;
 
-    if (!email || !password || !firstName || !lastName || !role) {
+    if (
+      !email ||
+      !password ||
+      !firstName ||
+      !lastName ||
+      !role ||
+      !deviceToken
+    ) {
       return res.status(400).json({ error: "Missing required fields" });
     }
 
@@ -33,7 +41,9 @@ export const register = async (req: Request, res: Response) => {
       expiresIn: TOKEN_EXPIRATION,
     });
 
-    return res.status(201).json({ message: "Registration successful", token , id});
+    return res
+      .status(201)
+      .json({ message: "Registration successful", token, id });
   } catch (err: any) {
     console.log(err.message);
     res.status(500).json({ message: "Registration failed", err: err });

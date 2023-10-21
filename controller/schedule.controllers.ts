@@ -1,9 +1,8 @@
 import { Request, Response } from "express";
 import { Patient } from "../models/Patient.models";
-import { CareTaker } from "../models/careTaker.models";
-import { calls, emailer, message } from "../utils/services.utils";
+import { Schedule } from "../models/schedule.models.";
 
-const addCareTaker = async (req: Request, res: Response) => {
+export const addSchedule = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
     const patient = await Patient.findById(id);
@@ -12,18 +11,14 @@ const addCareTaker = async (req: Request, res: Response) => {
       return res.status(404).json({ error: "Patient not found" });
     }
 
-    const careTaker = await CareTaker.create(req.body);
-    console.log(careTaker);
+    const schedule = await Schedule.create(req.body);
     await Patient.findByIdAndUpdate(id, {
-      $addToSet: { caretaker: careTaker._id },
+      $addToSet: { schedule: schedule._id },
     });
-    const email: string = patient.email;
-    console.log(email);
-    
-    await emailer(email);
+
     const careTakerIn = await Patient.findById(id).populate({
-      path: "caretaker",
-      select: "firstName lastName priority schedule email phone -_id",
+      path: "schedule",
+      select: "startDate endDate time medicineName description-_id",
     });
 
     return res.status(201).json(careTakerIn);
@@ -33,7 +28,7 @@ const addCareTaker = async (req: Request, res: Response) => {
   }
 };
 
-const getCareTaker = async (req: Request, res: Response) => {
+export const getSchedule = async (req: Request, res: Response) => {
   const { id } = req.params;
   try {
     const careTaker = await Patient.findById(id).populate("caretaker");
@@ -49,4 +44,3 @@ const getCareTaker = async (req: Request, res: Response) => {
   }
 };
 
-export { addCareTaker, getCareTaker };
