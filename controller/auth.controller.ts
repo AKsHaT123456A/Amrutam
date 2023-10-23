@@ -7,7 +7,7 @@ import { Patient } from "../models/Patient.models";
 
 export const register = async (req: Request, res: Response) => {
   try {
-    const { email, password, firstName, lastName, role, deviceToken } =
+    const { email, password, firstName, lastName, role } =
       req.body;
 
     if (!email || !password || !firstName || !lastName || !role) {
