@@ -10,14 +10,7 @@ export const register = async (req: Request, res: Response) => {
     const { email, password, firstName, lastName, role, deviceToken } =
       req.body;
 
-    if (
-      !email ||
-      !password ||
-      !firstName ||
-      !lastName ||
-      !role ||
-      !deviceToken
-    ) {
+    if (!email || !password || !firstName || !lastName || !role) {
       return res.status(400).json({ error: "Missing required fields" });
     }
 
