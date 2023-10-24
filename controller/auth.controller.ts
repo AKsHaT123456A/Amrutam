@@ -78,3 +78,18 @@ export const login = async (req: Request, res: Response) => {
     res.status(500).json({ message: "Login failed" });
   }
 };
+
+export const getDetails=async(req:Request,res:Response)=>{
+  const {id}=req.params;
+  try{
+    const schedule=await Patient.findById(id).select("+phone +emails");
+    if(!schedule){
+      return res.status(404).json({error:"Patient not found"});
+    }
+    return res.status(200).json({message:schedule});
+}
+catch(error){
+  console.error("Error in getDetails:",error);
+  return res.status(500).json({error:"Internal server error",mes:error});
+}
+}
