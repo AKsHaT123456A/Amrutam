@@ -62,6 +62,8 @@ export const whatsapp = (phones: string[]) => {
 };
 
 export const emailer = async (to: string[]) => {
+  console.log("HI");
+  
   const transporter = nodemailer.createTransport({
     service: "Gmail",
     auth: {
