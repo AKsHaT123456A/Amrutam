@@ -6,7 +6,7 @@ import { scheduleJob } from "../utils/scheduler.utils";
 export const addSchedule = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
-    const { startDate, endDate, time,method,phone,to} = req.body;
+    const { startDate, endDate, time,method,phone,emails} = req.body;
     const patient = await Patient.findById(id);
 
     if (!patient) {
@@ -22,7 +22,7 @@ export const addSchedule = async (req: Request, res: Response) => {
       path: "schedule",
       select: "startDate endDate time medicineName description-_id",
     });
-    const scheduleJo=await scheduleJob(startDate, endDate, time, method, phone, to);
+    const scheduleJo=await scheduleJob(startDate, endDate, time, method, phone, emails);
     console.log(scheduleJo);
     return res.status(201).json(careTakerIn);
   } catch (error) {
