@@ -17,6 +17,6 @@ app.get("/", (req: Request, res: Response) => {
 
 app.use("/api/v1/auth/patient", authRoutes);
 app.use("/api/v1/auth/caretaker", careTakerRoute);
-app.use("/api/v1/auth/schedule", scheduleRoute);
+app.use("/api/v1/schedule", scheduleRoute);
 
 connect(app);
