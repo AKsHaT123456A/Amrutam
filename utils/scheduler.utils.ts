@@ -28,9 +28,11 @@ console.log(endDateTime);
     );
     console.log(scheduledDate);
 
-    schedule.scheduleJob(scheduledDate, () =>
+    const sc=schedule.scheduleJob(scheduledDate, () =>
       notificationType(notType, phone, to)
     );
+    console.log(sc);
+    
     currentDate = new Date(currentDate.getTime() + timeInterval);
     return currentDate;
   }
