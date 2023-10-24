@@ -4,6 +4,7 @@ import cors from "cors";
 import { connect } from "./connection/db";
 import authRoutes from "./route/auth.routes";
 import careTakerRoute from "./route/careTaker.routes";
+import scheduleRoute from "./route/schedule.routes";
 const app = express();
 
 app.use(express.json());
@@ -16,5 +17,6 @@ app.get("/", (req: Request, res: Response) => {
 
 app.use("/api/v1/auth/patient", authRoutes);
 app.use("/api/v1/auth/caretaker", careTakerRoute);
+app.use("/api/v1/schedule", scheduleRoute);
 
 connect(app);
