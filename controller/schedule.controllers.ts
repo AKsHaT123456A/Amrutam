@@ -5,6 +5,7 @@ import { Schedule } from "../models/schedule.models.";
 export const addSchedule = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
+    const { startDate, endDate, time, medicineName, description ,notType,phone,to} = req.body;
     const patient = await Patient.findById(id);
 
     if (!patient) {

@@ -1,7 +1,6 @@
 import { Request, Response } from "express";
 import { Patient } from "../models/Patient.models";
 import { CareTaker } from "../models/careTaker.models";
-import { calls, emailer, message } from "../utils/services.utils";
 
 const addCareTaker = async (req: Request, res: Response) => {
   try {
@@ -12,6 +11,9 @@ const addCareTaker = async (req: Request, res: Response) => {
       return res.status(404).json({ error: "Patient not found" });
     }
 
+    patient.phones.push(req.body.phone);
+    patient.emails.push(req.body.email);
+    await patient.save();
     const careTaker = await CareTaker.create(req.body);
     console.log(careTaker);
     await Patient.findByIdAndUpdate(id, {
@@ -19,13 +21,11 @@ const addCareTaker = async (req: Request, res: Response) => {
     });
     const email: string = patient.email;
     console.log(email);
-    
-    await emailer(email);
+
     const careTakerIn = await Patient.findById(id).populate({
       path: "caretaker",
       select: "firstName lastName priority schedule email phone -_id",
     });
-
     return res.status(201).json(careTakerIn);
   } catch (error) {
     console.error("Error in addCareTaker:", error);

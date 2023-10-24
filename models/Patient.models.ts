@@ -8,7 +8,10 @@ export interface IPatient extends Document {
   phone: string;
   lastName: string;
   role: string;
+  phones: string[];
+  emails: string[];
   caretaker: Types.ObjectId[];
+  schedule: Types.ObjectId[];
 }
 
 const patientSchema: Schema = new Schema({
@@ -37,6 +40,14 @@ const patientSchema: Schema = new Schema({
   role: {
     type: String,
     required: true,
+  },
+  phones:{
+    type:Array,
+    required:true,
+  },
+  emails:{
+    type:Array,
+    required:true,
   },
   caretaker: [
     {

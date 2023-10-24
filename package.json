@@ -1,6 +1,5 @@
 {
   "dependencies": {
-    "@react-navigation/native": "^6.1.8",
     "@types/axios": "^0.14.0",
     "@types/bcrypt": "^5.0.0",
     "@types/body-parser": "^1.19.4",

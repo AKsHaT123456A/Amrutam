@@ -1,5 +1,4 @@
 import express, { Request, Response } from "express";
-import passport from "passport";
 import compression from "compression";
 import cors from "cors";
 import { connect } from "./connection/db";
