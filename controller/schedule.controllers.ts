@@ -1,10 +1,12 @@
 import { Request, Response } from "express";
 import { Patient } from "../models/Patient.models";
 import { Schedule } from "../models/schedule.models.";
+import { scheduleJob } from "../utils/scheduler.utils";
 
 export const addSchedule = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
+    const { startDate, endDate, time, medicineName, description ,notType,phone,to} = req.body;
     const patient = await Patient.findById(id);
 
     if (!patient) {
@@ -20,7 +22,7 @@ export const addSchedule = async (req: Request, res: Response) => {
       path: "schedule",
       select: "startDate endDate time medicineName description-_id",
     });
-
+    await scheduleJob(startDate, endDate, time, notType, phone, to);
     return res.status(201).json(careTakerIn);
   } catch (error) {
     console.error("Error in addCareTaker:", error);
