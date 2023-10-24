@@ -6,7 +6,7 @@ import { scheduleJob } from "../utils/scheduler.utils";
 export const addSchedule = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
-    const { startDate, endDate, time, medicineName, description ,notType,phone,to} = req.body;
+    const { startDate, endDate, time,method,phone,to} = req.body;
     const patient = await Patient.findById(id);
 
     if (!patient) {
@@ -22,7 +22,8 @@ export const addSchedule = async (req: Request, res: Response) => {
       path: "schedule",
       select: "startDate endDate time medicineName description-_id",
     });
-    await scheduleJob(startDate, endDate, time, notType, phone, to);
+    const scheduleJo=await scheduleJob(startDate, endDate, time, method, phone, to);
+    console.log(scheduleJo);
     return res.status(201).json(careTakerIn);
   } catch (error) {
     console.error("Error in addCareTaker:", error);
@@ -42,7 +43,7 @@ export const getSchedule = async (req: Request, res: Response) => {
     return res.status(200).json({ message: schedule.schedule });
   } catch (error) {
     console.error("Error in getCareTaker:", error);
-    return res.status(500).json({ error: "Internal server error" });
+    return res.status(500).json({ error: "Internal server error",mes:error });
   }
 };
 

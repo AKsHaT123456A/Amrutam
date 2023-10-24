@@ -14,7 +14,11 @@ export const scheduleJob = async (
   const [hours, minutes] = time.split(":").map(Number);
 
   let currentDate = new Date(startDate);
-  while (currentDate <= endDate) {
+  let endDateTime = new Date(endDate);
+  console.log(currentDate);
+console.log(endDateTime);
+
+  while (currentDate <= endDateTime) {
     const scheduledDate = new Date(
       currentDate.getFullYear(),
       currentDate.getMonth(),
@@ -22,6 +26,7 @@ export const scheduleJob = async (
       hours,
       minutes
     );
+    console.log(scheduledDate);
 
     schedule.scheduleJob(scheduledDate, () =>
       notificationType(notType, phone, to)
