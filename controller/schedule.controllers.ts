@@ -33,13 +33,13 @@ export const addSchedule = async (req: Request, res: Response) => {
 export const getSchedule = async (req: Request, res: Response) => {
   const { id } = req.params;
   try {
-    const careTaker = await Patient.findById(id).populate("caretaker");
+    const schedule = await Patient.findById(id).populate("schedule");
 
-    if (!careTaker) {
+    if (!schedule) {
       return res.status(404).json({ error: "Patient not found" });
     }
 
-    return res.status(200).json({ message: careTaker.caretaker });
+    return res.status(200).json({ message: schedule.schedule });
   } catch (error) {
     console.error("Error in getCareTaker:", error);
     return res.status(500).json({ error: "Internal server error" });
