@@ -26,8 +26,18 @@ The **Medicine Reminder App** helps patients keep track of their medication sche
 
 ### Setup
 
-1. **Clone the repository:**
-
+ **Clone the repository:**
+1. *Frontend*
    ```bash
-   git clone [https://github.com/AKsHaT123456A/Amrutam]
+   git clone https://github.com/AKsHaT123456A/Amrutam
    cd client
+   npm install 
+   npm run android
+
+2.*Backend*
+1. *Frontend*
+   ```bash
+   git clone https://github.com/AKsHaT123456A/Amrutam
+   cd server
+   npm install
+   npm start
