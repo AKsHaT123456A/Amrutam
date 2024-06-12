@@ -34,7 +34,7 @@ The **Medicine Reminder App** helps patients keep track of their medication sche
    npm install 
    npm run android
 
-2.*Backend*
+2. *Backend*
    ```bash
    git clone https://github.com/AKsHaT123456A/Amrutam
    cd server
